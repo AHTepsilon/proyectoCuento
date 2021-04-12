@@ -28,6 +28,7 @@ public class Principal extends PApplet
 		paralax = loadImage("paralax.png");
 		charAndText = loadImage("characterANDtext.png");
 		sky = loadImage("sky.png");
+		endScreen = loadImage("gameEnd.png");
 		
 		firstScene = true;
 		
@@ -64,6 +65,23 @@ public class Principal extends PApplet
 			image(gameScreen, 0, 0);
 			image(charAndText, 0, 0);
 			firstScene = false;
+		}
+		
+		if(keyPressed && key == 'O' || key == 'o') //This is just a debug feature to test the scene change
+		{
+			thirdScene = true;
+		}
+		
+		if(thirdScene)
+		{
+			secondScene = false;
+			
+			image(endScreen, 0, 0);
+			
+			if(mousePressed)
+			{
+				exit();
+			}
 		}
 	}
 
