@@ -24,6 +24,15 @@ public class Controller extends PApplet
 		coins = new Coins(512, 449);
 	}
 	
+	public void drawSprites()
+	{
+		barrel.draw();
+		brace.draw();
+		egg.draw();
+		diamond.draw();
+		coins.draw();
+	}
+	
 	public void mousePressed()
 	{
 		if(dist(mouseX, mouseY, barrel.getPosX(), barrel.getPosY()) < 10)
@@ -50,6 +59,46 @@ public class Controller extends PApplet
 		{
 			coins.interacted();
 		}
+	}
+
+	public Barrel getBarrel() {
+		return barrel;
+	}
+
+	public void setBarrel(Barrel barrel) {
+		this.barrel = barrel;
+	}
+
+	public Brace getBrace() {
+		return brace;
+	}
+
+	public void setBrace(Brace brace) {
+		this.brace = brace;
+	}
+
+	public Egg getEgg() {
+		return egg;
+	}
+
+	public void setEgg(Egg egg) {
+		this.egg = egg;
+	}
+
+	public Diamond getDiamond() {
+		return diamond;
+	}
+
+	public void setDiamond(Diamond diamond) {
+		this.diamond = diamond;
+	}
+
+	public Coins getCoins() {
+		return coins;
+	}
+
+	public void setCoins(Coins coins) {
+		this.coins = coins;
 	}
 
 }

@@ -1,4 +1,6 @@
 package view;
+import controller.Controller;
+import model.elements;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -20,6 +22,8 @@ public class Principal extends PApplet
 	boolean firstScene, secondScene, thirdScene;
 	int paralaxX;
 	
+	Controller controls;
+	
 	@Override
 	public void setup() //void Start
 	{
@@ -33,6 +37,8 @@ public class Principal extends PApplet
 		firstScene = true;
 		
 		paralaxX = -40;
+		controls = new Controller();
+
 	}
 	
 	@Override
@@ -41,6 +47,7 @@ public class Principal extends PApplet
 		background(255);
 		System.out.println(mouseX + ", " + mouseY);
 		changeScene();
+		//controls.drawSprites();
 	}
 	
 	public void changeScene()

@@ -12,16 +12,19 @@ public abstract class elements extends PApplet
 	public elements(int posX, int posY) 
 	{
 		this.interacted = false;
-		
+	}
+	
+	public abstract void draw();
+	public abstract void interacted();
+	
+	public void setup()
+	{
 		this.brace = loadImage("brace.png");
 		this.egg = loadImage("egg.png");
 		this.diamond = loadImage("diamond.png");
 		this.coins = loadImage("money.png");
 		this.barrel = loadImage("barrel.png");
 	}
-	
-	public abstract void draw();
-	public abstract void interacted();
 
 	public int getPosX() {
 		return posX;
