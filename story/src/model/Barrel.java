@@ -11,12 +11,13 @@ public class Barrel extends elements
 	@Override
 	public void draw() 
 	{
-		image(barrel, 1238, 556);
+		image(barrel, posX, posY);
 	}
 
 	@Override
 	public void interacted() 
 	{
+		posX += 5000;
 		interacted = true;
 	}
 

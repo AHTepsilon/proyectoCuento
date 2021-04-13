@@ -11,12 +11,13 @@ public class Diamond extends elements
 	@Override
 	public void draw() 
 	{
-		image(diamond, 27, 588);
+		image(diamond, posX, posY);
 	}
 
 	@Override
 	public void interacted() 
 	{
+		posX += 5000;
 		interacted = true;
 	}
 

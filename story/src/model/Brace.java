@@ -11,12 +11,13 @@ public class Brace extends elements
 	@Override
 	public void draw() 
 	{
-		image(brace, 454, 600);
+		image(brace, posX, posY);
 	}
 
 	@Override
 	public void interacted() 
 	{
+		posX += 5000;
 		interacted = true;
 	}
 

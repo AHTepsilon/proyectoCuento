@@ -11,12 +11,13 @@ public class Coins extends elements
 	@Override
 	public void draw() 
 	{
-		image(coins, 512, 449);
+		image(coins, posX, posY);
 	}
 
 	@Override
 	public void interacted() 
 	{
+		posX += 5000;
 		interacted = true;
 	}
 

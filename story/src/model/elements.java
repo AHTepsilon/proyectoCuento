@@ -23,4 +23,28 @@ public abstract class elements extends PApplet
 	public abstract void draw();
 	public abstract void interacted();
 
+	public int getPosX() {
+		return posX;
+	}
+
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+
+	public boolean isInteracted() {
+		return interacted;
+	}
+
+	public void setInteracted(boolean interacted) {
+		this.interacted = interacted;
+	}
+
 }

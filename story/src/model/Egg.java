@@ -11,12 +11,13 @@ public class Egg extends elements
 	@Override
 	public void draw() 
 	{
-		image(egg, 1094, 684);
+		image(egg, posX, posY);
 	}
 
 	@Override
 	public void interacted() 
 	{
+		posX += 5000;
 		interacted = true;
 	}
 
