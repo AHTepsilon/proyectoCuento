@@ -19,10 +19,13 @@ public class Principal extends PApplet
 	}
 	
 	PImage startScreen, backGround, gameScreen, endScreen, paralax, charAndText, sky;
+	PImage barrel, brace, coins, diamond, egg;
 	boolean firstScene, secondScene, thirdScene;
 	int paralaxX;
 	
 	Controller controls;
+	
+	public static int posX, posY, posX1, posY1, posX2, posY2, posX3, posY3, posX4, posY4;
 	
 	@Override
 	public void setup() //void Start
@@ -34,24 +37,31 @@ public class Principal extends PApplet
 		sky = loadImage("sky.png");
 		endScreen = loadImage("gameEnd.png");
 		
+		barrel = loadImage("barrel.png");
+		brace = loadImage("brace.png");
+		coins = loadImage("money.png");
+		diamond = loadImage("diamond.png");
+		egg = loadImage("egg.png");
+		
 		firstScene = true;
 		
 		paralaxX = -40;
-		controls = new Controller();
-
+		controls = new Controller(this);
 	}
 	
 	@Override
 	public void draw() //void Update
 	{		
 		background(255);
-		System.out.println(mouseX + ", " + mouseY);
+		System.out.println(posX + ", " + mouseY);
 		changeScene();
-		//controls.drawSprites();
+		drawSprites();
 	}
 	
 	public void changeScene()
 	{
+		imageMode(CORNER);
+		
 		if(firstScene)
 		{
 			image(startScreen, 0, 0);
@@ -90,6 +100,26 @@ public class Principal extends PApplet
 				exit();
 			}
 		}
+	}
+	
+	public void drawSprites()
+	{
+		imageMode(CENTER);
+		if(secondScene) 
+		{
+			posX4 = (mouseX / 15) + 400;
+			
+			image(barrel, posX, posY);
+			image(brace, posX1, posY1);
+			image(diamond, posX2, posY2);
+			image(egg, posX3, posY3);
+			image(coins, posX4, posY4);
+		}
+	}
+	
+	public void mousePressed()
+	{
+		controls.interacting();
 	}
 
 }
