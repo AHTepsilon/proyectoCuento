@@ -26,6 +26,7 @@ public class Principal extends PApplet
 	Controller controls;
 	
 	public static int posX, posY, posX1, posY1, posX2, posY2, posX3, posY3, posX4, posY4;
+	boolean barrelInteracted, braceInteracted, coinsInteracted, diamondInteracted, eggInteracted;
 	
 	@Override
 	public void setup() //void Start
@@ -47,6 +48,17 @@ public class Principal extends PApplet
 		
 		paralaxX = -40;
 		controls = new Controller(this);
+		
+		posX = 1238;
+		posY = 556;
+		posX1 = 454;
+		posY1 = 600;
+		posX2 = 1094;
+		posY2 = 684;
+		posX3 = 27;
+		posY3 = 588;
+		posX4 = 512;
+		posY4 = 449;
 	}
 	
 	@Override
@@ -84,7 +96,7 @@ public class Principal extends PApplet
 			firstScene = false;
 		}
 		
-		if(keyPressed && key == 'O' || key == 'o') //This is just a debug feature to test the scene change
+		if(barrelInteracted && braceInteracted && eggInteracted && coinsInteracted && diamondInteracted)
 		{
 			thirdScene = true;
 		}
@@ -94,21 +106,15 @@ public class Principal extends PApplet
 			secondScene = false;
 			
 			image(endScreen, 0, 0);
-			
-			if(mousePressed)
-			{
-				exit();
-			}
 		}
 	}
 	
 	public void drawSprites()
 	{
+		posX4 = (mouseX / 15) + 400;
 		imageMode(CENTER);
 		if(secondScene) 
-		{
-			posX4 = (mouseX / 15) + 400;
-			
+		{	
 			image(barrel, posX, posY);
 			image(brace, posX1, posY1);
 			image(diamond, posX2, posY2);
@@ -119,7 +125,40 @@ public class Principal extends PApplet
 	
 	public void mousePressed()
 	{
-		controls.interacting();
+		if(dist(mouseX, mouseY, posX, posY) < 50)
+		{
+			controls.getBarrel().interacted();
+			posX = 5000;
+			barrelInteracted = true;
+		}
+		
+		if(dist(mouseX, mouseY, posX1, posY1) < 50)
+		{
+			controls.getBrace().interacted();
+			posX1 = 5000;
+			braceInteracted = true;
+		}
+		
+		if(dist(mouseX, mouseY, posX2, posY2) < 50)
+		{
+			controls.getEgg().interacted();
+			posX2 = 5000;
+			eggInteracted = true;
+		}
+		
+		if(dist(mouseX, mouseY, posX3, posY3) < 50)
+		{
+			controls.getDiamond().interacted();
+			posX3 = 5000;
+			diamondInteracted = true;
+		}
+		
+		if(dist(mouseX, mouseY, posX4, posY4) < 50)
+		{
+			controls.getCoins().interacted();
+			posY4 = 5000;
+			coinsInteracted = true;
+		}
 	}
 
 }
