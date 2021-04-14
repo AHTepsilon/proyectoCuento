@@ -1,6 +1,9 @@
 package view;
+import java.util.ArrayList;
+
 import controller.Controller;
 import model.elements;
+import model.word;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -28,9 +31,17 @@ public class Principal extends PApplet
 	public static int posX, posY, posX1, posY1, posX2, posY2, posX3, posY3, posX4, posY4;
 	boolean barrelInteracted, braceInteracted, coinsInteracted, diamondInteracted, eggInteracted;
 	
+	String[] text;
+	String[] separatedText;
+	
+	private ArrayList<word> words;
+
 	@Override
 	public void setup() //void Start
 	{
+		text = loadStrings("tale.txt");
+		words = new ArrayList<word>();
+		
 		startScreen = loadImage("backGround.png");
 		gameScreen = loadImage("game screen.png");
 		paralax = loadImage("paralax.png");
@@ -59,6 +70,15 @@ public class Principal extends PApplet
 		posY3 = 588;
 		posX4 = 512;
 		posY4 = 449;
+		
+		for(int i = 0; i < text.length; i++)
+		{
+			String[] arrayWords = text[i].split(" ");
+			for(int j = 0; j < arrayWords.length; j++)
+			{
+				words.add(new word(arrayWords[j]));
+			}
+		}
 	}
 	
 	@Override
