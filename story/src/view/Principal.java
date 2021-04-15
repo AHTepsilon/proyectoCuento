@@ -31,16 +31,19 @@ public class Principal extends PApplet
 	public static int posX, posY, posX1, posY1, posX2, posY2, posX3, posY3, posX4, posY4;
 	boolean barrelInteracted, braceInteracted, coinsInteracted, diamondInteracted, eggInteracted;
 	
-	String[] text;
-	String[] separatedText;
+	//String[] text;
 	
-	private ArrayList<word> words;
+	String newText;
+	String[] newTextArr;
+	String barrelTXT, braceTXT, coinsTXT, diamondTXT, eggTXT;
+	
+	//private ArrayList<word> words;
 
 	@Override
 	public void setup() //void Start
 	{
-		text = loadStrings("tale.txt");
-		words = new ArrayList<word>();
+		//text = loadStrings("tale.txt");
+		//words = new ArrayList<word>();
 		
 		startScreen = loadImage("backGround.png");
 		gameScreen = loadImage("game screen.png");
@@ -70,15 +73,6 @@ public class Principal extends PApplet
 		posY3 = 588;
 		posX4 = 512;
 		posY4 = 449;
-		
-		for(int i = 0; i < text.length; i++)
-		{
-			String[] arrayWords = text[i].split(" ");
-			for(int j = 0; j < arrayWords.length; j++)
-			{
-				words.add(new word(arrayWords[j]));
-			}
-		}
 	}
 	
 	@Override
@@ -119,6 +113,12 @@ public class Principal extends PApplet
 		if(barrelInteracted && braceInteracted && eggInteracted && coinsInteracted && diamondInteracted)
 		{
 			thirdScene = true;
+
+			newText = barrelTXT.toUpperCase() + " " + braceTXT.toUpperCase() + 
+					" " + diamondTXT.toUpperCase() + " " + coinsTXT.toUpperCase()
+					+ " " + eggTXT.toUpperCase() + " ";
+			newTextArr = split(newText, ' ');
+			saveStrings("newText.txt", newTextArr);
 		}
 		
 		if(thirdScene)
@@ -150,6 +150,7 @@ public class Principal extends PApplet
 			controls.getBarrel().interacted();
 			posX = 5000;
 			barrelInteracted = true;
+			barrelTXT = "barril";
 		}
 		
 		if(dist(mouseX, mouseY, posX1, posY1) < 50)
@@ -157,6 +158,7 @@ public class Principal extends PApplet
 			controls.getBrace().interacted();
 			posX1 = 5000;
 			braceInteracted = true;
+			braceTXT = "atizador";
 		}
 		
 		if(dist(mouseX, mouseY, posX2, posY2) < 50)
@@ -164,6 +166,7 @@ public class Principal extends PApplet
 			controls.getEgg().interacted();
 			posX2 = 5000;
 			eggInteracted = true;
+			eggTXT = "huevo";
 		}
 		
 		if(dist(mouseX, mouseY, posX3, posY3) < 50)
@@ -171,6 +174,7 @@ public class Principal extends PApplet
 			controls.getDiamond().interacted();
 			posX3 = 5000;
 			diamondInteracted = true;
+			diamondTXT = "diamante";
 		}
 		
 		if(dist(mouseX, mouseY, posX4, posY4) < 50)
@@ -178,6 +182,7 @@ public class Principal extends PApplet
 			controls.getCoins().interacted();
 			posY4 = 5000;
 			coinsInteracted = true;
+			coinsTXT = "oro";
 		}
 	}
 
