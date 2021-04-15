@@ -139,7 +139,6 @@ public class Principal extends PApplet
 				}			
 			}
 			
-			
 			saveStrings("newText.txt", newTextArr);
 			
 //			for(int j = 0; j < text.length; j++)
