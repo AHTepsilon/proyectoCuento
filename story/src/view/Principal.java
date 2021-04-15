@@ -31,19 +31,30 @@ public class Principal extends PApplet
 	public static int posX, posY, posX1, posY1, posX2, posY2, posX3, posY3, posX4, posY4;
 	boolean barrelInteracted, braceInteracted, coinsInteracted, diamondInteracted, eggInteracted;
 	
-	//String[] text;
+	String[] text;
 	
 	String newText;
 	String[] newTextArr;
 	String barrelTXT, braceTXT, coinsTXT, diamondTXT, eggTXT;
 	
-	//private ArrayList<word> words;
+	private ArrayList<word> words;
+	private ArrayList<word> theFiveWords;
 
 	@Override
 	public void setup() //void Start
 	{
-		//text = loadStrings("tale.txt");
-		//words = new ArrayList<word>();
+		text = loadStrings("tale");
+		words = new ArrayList<word>();
+		theFiveWords = new ArrayList<word>();
+		
+		for (int i = 0; i < text.length; i++) 
+		{
+			String[] arrayWords = text[i].split(" ");
+			for (int j = 0; j < arrayWords.length; j++) 
+			{
+				words.add(new word(arrayWords[j], j));
+			}			
+		}
 		
 		startScreen = loadImage("backGround.png");
 		gameScreen = loadImage("game screen.png");
@@ -79,7 +90,7 @@ public class Principal extends PApplet
 	public void draw() //void Update
 	{		
 		background(255);
-		System.out.println(posX + ", " + mouseY);
+		//System.out.println(posX + ", " + mouseY);
 		changeScene();
 		drawSprites();
 	}
@@ -117,8 +128,33 @@ public class Principal extends PApplet
 			newText = barrelTXT.toUpperCase() + " " + braceTXT.toUpperCase() + 
 					" " + diamondTXT.toUpperCase() + " " + coinsTXT.toUpperCase()
 					+ " " + eggTXT.toUpperCase() + " ";
-			newTextArr = split(newText, ' ');
+			newTextArr = split(newText, ' '); 
+			
+			for (int i = 0; i < newTextArr.length; i++) 
+			{
+				String[] arrayWords = newTextArr[i].split(" ");
+				for (int j = 0; j < arrayWords.length; j++) 
+				{
+					theFiveWords.add(new word(arrayWords[j], j));
+				}			
+			}
+			
+			
 			saveStrings("newText.txt", newTextArr);
+			
+//			for(int j = 0; j < text.length; j++)
+//			{
+//				for(int k = 0; k < newTextArr.length; k++)
+//				{
+//					if(words.contains(theFiveWords.get(k).getValue()))
+//					{
+//						System.out.println("funciona");
+//						words.get(j).getValue().toUpperCase();
+//						saveStrings("newText.txt", text);
+//					}
+//				}
+//			}
+
 		}
 		
 		if(thirdScene)
